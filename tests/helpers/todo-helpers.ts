@@ -102,8 +102,8 @@ export class TodoHelpers {
     const todoItem = this.todoItems.nth(todoIndex);
     const deleteButton = todoItem.locator("button.delete-btn");
 
-    // Настраиваем обработчик диалога подтверждения
-    this.page.on("dialog", async (dialog) => {
+    // Настраиваем одноразовый обработчик диалога подтверждения
+    this.page.once("dialog", async (dialog) => {
       expect(dialog.message()).toContain("Вы уверены");
       await dialog.accept();
     });
